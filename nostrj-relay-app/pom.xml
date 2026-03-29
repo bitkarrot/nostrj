@@ -110,6 +110,14 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <mainClass>org.nostrj.relay.Application</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>io.micronaut.maven</groupId>
                 <artifactId>micronaut-maven-plugin</artifactId>
                 <version>4.2.0</version>
