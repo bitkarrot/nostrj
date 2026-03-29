@@ -1,0 +1,16 @@
+micronaut:
+  application:
+    name: nostrj-relay-test
+  server:
+    port: -1
+
+relay:
+  name: Test Relay
+  description: Integration test relay
+  contact: test@example.com
+  db-path: test-relay.db
+  enable-nip11: true
+
+logger:
+  levels:
+    org.nostrj: DEBUG

@@ -15,9 +15,6 @@ subprojects {
     apply plugin: 'java-library'
 
     java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
         withSourcesJar()
         withJavadocJar()
     }
@@ -27,12 +24,14 @@ subprojects {
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
-    test {
+    tasks.withType(Test) {
         useJUnitPlatform()
     }
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
         options.release = 21
+        sourceCompatibility = '21'
+        targetCompatibility = '21'
     }
 }

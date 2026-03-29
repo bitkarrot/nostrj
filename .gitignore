@@ -41,4 +41,6 @@ bin/
 ### Database ###
 *.db
 *.sqlite
-resources
+
+### Reference Resources ###
+/resources/

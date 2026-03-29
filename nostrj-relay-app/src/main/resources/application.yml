@@ -1,0 +1,23 @@
+micronaut:
+  application:
+    name: nostrj-relay
+  server:
+    port: 8080
+    netty:
+      max-header-size: 16KB
+  executors:
+    io:
+      type: fixed
+      n-threads: 75
+
+relay:
+  name: NostrJ Relay
+  description: A Nostr relay powered by NostrJ
+  contact: admin@example.com
+  db-path: nostr-relay.db
+  enable-nip11: true
+
+logger:
+  levels:
+    org.nostrj: INFO
+    io.micronaut: INFO
