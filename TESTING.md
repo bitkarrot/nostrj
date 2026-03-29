@@ -2,39 +2,37 @@
 
 ## Current Status
 
-**Note**: The project is built with Java 21 compatibility but requires Gradle 8.5+ which has compatibility issues with Java 25. 
+✅ **All tests passing!** The project now uses Maven and is fully compatible with Java 25. 
 
-## Recommended Testing Approach
+## Prerequisites
 
-Since the Gradle/Java version compatibility is causing issues, here are alternative ways to test the relay:
-
-### Option 1: Manual Testing with Scripts
-
-We've created a test script that starts the relay and verifies basic functionality:
+Before running tests, install the secp256k1 native library:
 
 ```bash
-./test-relay.sh
+# macOS
+brew install secp256k1
+
+# Linux (Ubuntu/Debian)
+sudo apt-get install libsecp256k1-dev
 ```
 
-This will:
-1. Start the relay server
-2. Test HTTP endpoints (health check, NIP-11 info)
-3. Show you how to connect with WebSocket clients
+## Running Tests
 
-### Option 2: Install Java 21
-
-Download and install Java 21 from:
-- https://adoptium.net/temurin/releases/?version=21
-
-Then run:
+### Run All Tests
 ```bash
-./gradlew clean build
-./gradlew :nostrj-relay-app:test
+mvn test
 ```
 
-### Option 3: Use Docker (Future Enhancement)
+### Run Relay Integration Tests
+```bash
+mvn test -pl nostrj-relay-app
+```
 
-We can create a Dockerfile that uses Java 21 to build and test the project in an isolated environment.
+### Run Specific Test
+```bash
+mvn test -pl nostrj-relay-app -Dtest=RelayIntegrationTest
+mvn test -pl nostrj-relay-app -Dtest=RelayIntegrationTest#testCompleteWorkflow
+```
 
 ## Integration Tests Created
 
@@ -86,7 +84,7 @@ EOF
 ### 2. Start the Relay
 
 ```bash
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 ```
 
 The relay will start on `http://localhost:8080`

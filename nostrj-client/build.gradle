@@ -1,9 +1,0 @@
-dependencies {
-    api project(':nostrj-core')
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
-    implementation 'org.slf4j:slf4j-api:2.0.9'
-    implementation 'org.java-websocket:Java-WebSocket:1.5.4'
-    
-    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
-    testImplementation 'org.mockito:mockito-core:5.5.0'
-}

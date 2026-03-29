@@ -4,7 +4,7 @@ A comprehensive Java implementation of the Nostr protocol, providing modular lib
 
 ## Project Structure
 
-NostrJ is organized as a multi-module Gradle project:
+NostrJ is organized as a multi-module Maven project:
 
 ### 1. **nostrj-core** (JAR)
 Core Nostr functionality including:
@@ -39,8 +39,9 @@ Complete Nostr relay server using Micronaut:
 
 ## Requirements
 
-- Java 21 or later
-- Gradle 8.5 or later (wrapper included)
+- Java 21 or later (tested with Java 25)
+- Maven 3.9 or later
+- secp256k1 native library (install via `brew install secp256k1` on macOS)
 
 ## Dependencies
 
@@ -54,15 +55,20 @@ Complete Nostr relay server using Micronaut:
 
 Build all modules:
 ```bash
-./gradlew build
+mvn clean install
+```
+
+Build without tests:
+```bash
+mvn clean install -DskipTests
 ```
 
 Build specific module:
 ```bash
-./gradlew :nostrj-core:build
-./gradlew :nostrj-client:build
-./gradlew :nostrj-server:build
-./gradlew :nostrj-relay-app:build
+mvn clean install -pl nostrj-core
+mvn clean install -pl nostrj-client
+mvn clean install -pl nostrj-server
+mvn clean install -pl nostrj-relay-app
 ```
 
 ## Usage Examples
@@ -172,13 +178,13 @@ micronaut:
 
 Run the relay:
 ```bash
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 ```
 
 Or build and run as standalone:
 ```bash
-./gradlew :nostrj-relay-app:build
-java -jar nostrj-relay-app/build/libs/nostrj-relay-app-0.1.0-SNAPSHOT-all.jar
+mvn package -pl nostrj-relay-app
+java -jar nostrj-relay-app/target/nostrj-relay-app-0.1.0-SNAPSHOT.jar
 ```
 
 Connect to your relay:
@@ -190,12 +196,17 @@ Connect to your relay:
 
 Run all tests:
 ```bash
-./gradlew test
+mvn test
 ```
 
 Run tests for specific module:
 ```bash
-./gradlew :nostrj-core:test
+mvn test -pl nostrj-relay-app
+```
+
+Run specific test:
+```bash
+mvn test -pl nostrj-relay-app -Dtest=RelayIntegrationTest
 ```
 
 ## Supported NIPs

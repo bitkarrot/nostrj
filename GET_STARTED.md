@@ -45,26 +45,27 @@ Your NostrJ implementation is ready to use. Here's what has been created:
 ## 🚀 Quick Start
 
 ### Prerequisites
-Make sure you have **Java 21** installed:
+Make sure you have the required tools installed:
 ```bash
-java -version
-# Should show version 21 or higher
+java -version  # Should show version 21 or higher (tested with Java 25)
+mvn -version   # Should show Maven 3.9 or higher
+brew install secp256k1  # Install native secp256k1 library (macOS)
 ```
 
 ### Build Everything
 ```bash
 cd /Users/bk/github/nostrj
-./gradlew build
+mvn clean install
 ```
 
 ### Run Tests
 ```bash
-./gradlew test
+mvn test
 ```
 
 ### Start the Relay Server
 ```bash
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 ```
 
 The relay will start on `http://localhost:8080`
@@ -108,7 +109,7 @@ client.publishEvent(event, URI.create("wss://relay.damus.io")).join();
 nano nostrj-relay-app/src/main/resources/application.yml
 
 # Start relay
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 
 # Test it
 curl http://localhost:8080/
@@ -125,7 +126,7 @@ nostrj/
 ├── README.md             # Main docs
 ├── QUICKSTART.md         # Quick tutorial
 ├── EXAMPLES.md           # Code examples
-└── build.gradle          # Build config
+└── pom.xml               # Maven build config
 ```
 
 ## 🎯 Key Features Implemented
@@ -159,26 +160,26 @@ nostrj/
 
 ```bash
 # Build all modules
-./gradlew build
+mvn clean install
 
 # Build specific module
-./gradlew :nostrj-core:build
-./gradlew :nostrj-client:build
-./gradlew :nostrj-server:build
-./gradlew :nostrj-relay-app:build
+mvn clean install -pl nostrj-core
+mvn clean install -pl nostrj-client
+mvn clean install -pl nostrj-server
+mvn clean install -pl nostrj-relay-app
 
 # Run tests
-./gradlew test
-./gradlew :nostrj-core:test
+mvn test
+mvn test -pl nostrj-relay-app
 
 # Run relay
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 
-# Create distribution
-./gradlew :nostrj-relay-app:distZip
+# Package relay
+mvn package -pl nostrj-relay-app
 
 # Clean build
-./gradlew clean build
+mvn clean install
 ```
 
 ## 📖 Learn More
@@ -199,13 +200,13 @@ java -version
 ### "Connection refused"
 Make sure the relay is running:
 ```bash
-./gradlew :nostrj-relay-app:run
+mvn exec:java -pl nostrj-relay-app
 ```
 
 ### "Module not found"
 Build the project first:
 ```bash
-./gradlew build
+mvn clean install
 ```
 
 ## 💡 Tips
@@ -222,8 +223,8 @@ Everything is set up and ready to use. Start building your Nostr applications!
 
 ```bash
 # Quick test
-./gradlew :nostrj-core:test
-./gradlew :nostrj-relay-app:run
+mvn test -pl nostrj-relay-app
+mvn exec:java -pl nostrj-relay-app
 ```
 
 Happy coding! ⚡
