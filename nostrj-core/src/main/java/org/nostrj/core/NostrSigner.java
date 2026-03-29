@@ -23,7 +23,7 @@ public class NostrSigner {
             Secp256k1 secp = keys.getSecp();
             SecpKeyPair keyPair = secp.ecKeyPairCreate(keys.getPrivateKey());
             SchnorrSignature signature = secp.schnorrSigSign32(hash, keyPair);
-            event.setSig(HexFormat.of().formatHex(signature.serialize()));
+            event.setSig(HexFormat.of().formatHex(signature.bytes()));
             
             return event;
         } catch (Exception e) {
@@ -45,10 +45,13 @@ public class NostrSigner {
             byte[] sigBytes = HexFormat.of().parseHex(event.getSig());
             
             try (Secp256k1 secp = Secp256k1.get()) {
-                SchnorrSignature signature = SchnorrSignature.of(sigBytes);
+                SchnorrSignature signature = () -> sigBytes;
                 var pubkey = org.bitcoinj.secp.SecpXOnlyPubKey.of(pubkeyBytes);
                 var result = secp.schnorrSigVerify(signature, hash, pubkey);
-                return result.isSuccess() && result.get();
+                if (result instanceof org.bitcoinj.secp.SecpResult.Ok) {
+                    return ((org.bitcoinj.secp.SecpResult.Ok<Boolean>) result).result();
+                }
+                return false;
             }
         } catch (Exception e) {
             return false;

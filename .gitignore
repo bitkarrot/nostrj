@@ -1,8 +1,10 @@
 .gradle
 build/
+target/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+relay.log
 
 ### IntelliJ IDEA ###
 .idea
@@ -38,9 +40,15 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-### Database ###
+### Database files
 *.db
-*.sqlite
+*.db-journal
+
+# Relay logs
+relay.log
+
+# Local resources (external git repos)
+/resources/ite
 
 ### Reference Resources ###
-/resources/
+# /resources/

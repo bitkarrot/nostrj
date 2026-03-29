@@ -22,14 +22,14 @@ public class NostrKeys {
     public static NostrKeys generate() {
         Secp256k1 secp = Secp256k1.get();
         SecpKeyPair keyPair = secp.ecKeyPairCreate();
-        return new NostrKeys(keyPair.privKey(), keyPair.pubKey().xOnly(), secp);
+        return new NostrKeys(keyPair.privateKey(), keyPair.publicKey().xOnly(), secp);
     }
 
     public static NostrKeys fromPrivateKey(byte[] privateKeyBytes) {
         Secp256k1 secp = Secp256k1.get();
         SecpPrivKey privKey = SecpPrivKey.of(privateKeyBytes);
         SecpKeyPair keyPair = secp.ecKeyPairCreate(privKey);
-        return new NostrKeys(privKey, keyPair.pubKey().xOnly(), secp);
+        return new NostrKeys(privKey, keyPair.publicKey().xOnly(), secp);
     }
 
     public static NostrKeys fromPrivateKeyHex(String privateKeyHex) {
@@ -38,7 +38,7 @@ public class NostrKeys {
     }
 
     public byte[] getPrivateKeyBytes() {
-        return privateKey.serialize();
+        return privateKey.getEncoded();
     }
 
     public String getPrivateKeyHex() {
