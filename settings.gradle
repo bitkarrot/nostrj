@@ -1,0 +1,11 @@
+rootProject.name = 'nostrj-parent'
+
+include 'nostrj-core'
+include 'nostrj-client'
+include 'nostrj-server'
+include 'nostrj-relay-app'
+
+project(':nostrj-core').projectDir = file('nostrj-core')
+project(':nostrj-client').projectDir = file('nostrj-client')
+project(':nostrj-server').projectDir = file('nostrj-server')
+project(':nostrj-relay-app').projectDir = file('nostrj-relay-app')
