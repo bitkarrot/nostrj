@@ -26,6 +26,11 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.bitcoinj.secp</groupId>
+            <artifactId>secp-ffm</artifactId>
+        </dependency>
+
         <!-- Micronaut -->
         <dependency>
             <groupId>io.micronaut</groupId>
