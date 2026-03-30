@@ -104,7 +104,7 @@ This test suite includes **8 comprehensive test scenarios** that verify the comp
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
 
 # Run tests
-./gradlew :nostrj-relay-app:test
+mvn -pl nostrj-relay-app test
 ```
 
 ### Option 2: Manual Testing Script
@@ -124,10 +124,10 @@ This script:
 
 ```bash
 # Run specific test
-./gradlew :nostrj-relay-app:test --tests RelayIntegrationTest.testCompleteWorkflow
+mvn -pl nostrj-relay-app test -Dtest=RelayIntegrationTest#testCompleteWorkflow
 
 # Run all integration tests
-./gradlew :nostrj-relay-app:test --tests RelayIntegrationTest
+mvn -pl nostrj-relay-app test -Dtest=RelayIntegrationTest
 ```
 
 ## Test Output Example
@@ -164,16 +164,16 @@ Step 5: Verifying...
 
 ### Java Version Compatibility
 
-**Issue**: Gradle 8.5 doesn't support Java 25 (class file version 69)
+**Issue**: Maven may have issues with Java 25 (class file version 69)
 
 **Solutions**:
 1. Install Java 21 (recommended)
 2. Use manual testing approach
-3. Wait for Gradle 8.11+ support (future)
+3. Wait for updated Maven compiler plugin support (future)
 
 **Why Java 21?**
 - Micronaut 4.2.0 requires Java 17+
-- Gradle 8.5 supports up to Java 21
+- Maven compiler plugin supports up to Java 21 reliably
 - Java 25 is too new for current tooling
 
 ## Test Coverage
@@ -206,7 +206,7 @@ Step 5: Verifying...
 ### To Run Tests Now
 
 1. Install Java 21
-2. Run: `./gradlew :nostrj-relay-app:test`
+2. Run: `mvn -pl nostrj-relay-app test`
 3. Watch all 8 tests pass! ✅
 
 ### Alternative Testing

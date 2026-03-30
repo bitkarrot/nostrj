@@ -57,7 +57,7 @@ NostrJ is a complete, production-ready implementation of the Nostr protocol in J
 | Database | SQLite JDBC | 3.44.1.0 |
 | WebSocket Client | Java-WebSocket | 1.5.4 |
 | Logging | SLF4J + Logback | 2.0.9 |
-| Build Tool | Gradle | 8.5 |
+| Build Tool | Maven | 3.9+ |
 | Java Version | Java | 21+ |
 
 ## Module Dependencies
@@ -78,10 +78,7 @@ nostrj-client
 
 ```
 nostrj/
-├── build.gradle                    # Root build configuration
-├── settings.gradle                 # Multi-module setup
-├── gradle.properties              # Version management
-├── gradlew / gradlew.bat          # Gradle wrapper
+├── pom.xml                        # Root build configuration
 ├── README.md                      # Main documentation
 ├── QUICKSTART.md                  # 5-minute tutorial
 ├── EXAMPLES.md                    # Code examples
@@ -89,7 +86,7 @@ nostrj/
 ├── PROJECT_SUMMARY.md             # This file
 │
 ├── nostrj-core/
-│   ├── build.gradle
+│   ├── pom.xml
 │   └── src/
 │       ├── main/java/org/nostrj/core/
 │       │   ├── NostrKeys.java           # Key generation & management
@@ -103,7 +100,7 @@ nostrj/
 │           └── NostrEventTest.java
 │
 ├── nostrj-client/
-│   ├── build.gradle
+│   ├── pom.xml
 │   └── src/main/java/org/nostrj/client/
 │       ├── NostrClient.java             # Main client API
 │       ├── NostrMessage.java            # Message parsing
@@ -114,7 +111,7 @@ nostrj/
 │       └── RelayMessageListener.java    # Message callbacks
 │
 ├── nostrj-server/
-│   ├── build.gradle
+│   ├── pom.xml
 │   └── src/main/java/org/nostrj/server/
 │       ├── EventStore.java              # Storage interface
 │       ├── SqliteEventStore.java        # SQLite implementation
@@ -125,7 +122,7 @@ nostrj/
 │       └── DefaultRelayPolicy.java      # Default policy
 │
 └── nostrj-relay-app/
-    ├── build.gradle
+    ├── pom.xml
     └── src/main/
         ├── java/org/nostrj/relay/
         │   ├── Application.java                    # Main entry point
@@ -147,22 +144,22 @@ nostrj/
 
 ```bash
 # Build all modules
-./gradlew build
+mvn clean install
 
 # Build specific module
-./gradlew :nostrj-core:build
-./gradlew :nostrj-client:build
-./gradlew :nostrj-server:build
-./gradlew :nostrj-relay-app:build
+mvn -pl nostrj-core install
+mvn -pl nostrj-client install
+mvn -pl nostrj-server install
+mvn -pl nostrj-relay-app package
 
 # Run tests
-./gradlew test
+mvn test
 
 # Run relay application
-./gradlew :nostrj-relay-app:run
+mvn -pl nostrj-relay-app mn:run
 
 # Create distribution
-./gradlew :nostrj-relay-app:distZip
+mvn -pl nostrj-relay-app package
 ```
 
 ## Supported Nostr NIPs

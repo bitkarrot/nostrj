@@ -14,19 +14,19 @@ Thank you for your interest in contributing to NostrJ! This document provides gu
 ```bash
 git clone https://github.com/yourusername/nostrj.git
 cd nostrj
-./gradlew build
+mvn clean install
 ```
 
 ### Running Tests
 
 ```bash
 # Run all tests
-./gradlew test
+mvn test
 
 # Run tests for specific module
-./gradlew :nostrj-core:test
-./gradlew :nostrj-client:test
-./gradlew :nostrj-server:test
+mvn -pl nostrj-core test
+mvn -pl nostrj-client test
+mvn -pl nostrj-server test
 ```
 
 ## Project Structure
@@ -37,9 +37,8 @@ nostrj/
 ├── nostrj-client/        # Client library for relay connections
 ├── nostrj-server/        # Server components for building relays
 ├── nostrj-relay-app/     # Complete relay application
-├── build.gradle          # Root build configuration
-├── settings.gradle       # Multi-module settings
-└── gradle.properties     # Project properties
+├── pom.xml               # Root build configuration
+└── (module pom.xml)      # Module configurations
 ```
 
 ## Code Style
@@ -65,8 +64,8 @@ nostrj/
 
 4. **Test your changes**
    ```bash
-   ./gradlew test
-   ./gradlew build
+   mvn test
+   mvn clean install
    ```
 
 5. **Commit your changes**

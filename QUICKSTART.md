@@ -4,15 +4,27 @@ Get started with NostrJ in 5 minutes!
 
 ## Installation
 
-Add NostrJ modules to your Gradle project:
+Add NostrJ modules to your Maven project:
 
-```gradle
-dependencies {
-    implementation 'org.nostrj:nostrj-core:0.1.0-SNAPSHOT'
-    implementation 'org.nostrj:nostrj-client:0.1.0-SNAPSHOT'
-    // Optional: for building relays
-    implementation 'org.nostrj:nostrj-server:0.1.0-SNAPSHOT'
-}
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.nostrj</groupId>
+        <artifactId>nostrj-core</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.nostrj</groupId>
+        <artifactId>nostrj-client</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+    <!-- Optional: for building relays -->
+    <dependency>
+        <groupId>org.nostrj</groupId>
+        <artifactId>nostrj-server</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
 ```
 
 Or build from source:
@@ -20,7 +32,7 @@ Or build from source:
 ```bash
 git clone https://github.com/yourusername/nostrj.git
 cd nostrj
-./gradlew build
+mvn clean install
 ```
 
 ## 1. Generate Keys (30 seconds)
@@ -152,7 +164,7 @@ relay:
 ### 2. Start the relay
 
 ```bash
-./gradlew :nostrj-relay-app:run
+mvn -pl nostrj-relay-app mn:run
 ```
 
 ### 3. Test it
@@ -181,7 +193,7 @@ Make sure the relay is running and accessible. Try a different public relay.
 Ensure you're using the same keys to sign and verify events.
 
 ### "Module not found"
-Run `./gradlew build` to build all modules first.
+Run `mvn clean install` to build all modules first.
 
 ## Getting Help
 

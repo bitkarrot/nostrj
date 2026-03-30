@@ -368,22 +368,22 @@ logger:
 
 ```bash
 # Development mode
-./gradlew :nostrj-relay-app:run
+mvn -pl nostrj-relay-app mn:run
 
 # Build standalone JAR
-./gradlew :nostrj-relay-app:build
+mvn -pl nostrj-relay-app package
 
 # Run standalone
-java -jar nostrj-relay-app/build/libs/nostrj-relay-app-0.1.0-SNAPSHOT-all.jar
+java -jar nostrj-relay-app/target/nostrj-relay-app-0.1.0-SNAPSHOT.jar
 
 # With custom config
 java -Dmicronaut.config.files=custom-config.yml \
-     -jar nostrj-relay-app/build/libs/nostrj-relay-app-0.1.0-SNAPSHOT-all.jar
+     -jar nostrj-relay-app/target/nostrj-relay-app-0.1.0-SNAPSHOT.jar
 
 # With environment variables
 MICRONAUT_SERVER_PORT=8888 \
 RELAY_NAME="Production Relay" \
-java -jar nostrj-relay-app/build/libs/nostrj-relay-app-0.1.0-SNAPSHOT-all.jar
+java -jar nostrj-relay-app/target/nostrj-relay-app-0.1.0-SNAPSHOT.jar
 ```
 
 ### 11. Testing Your Relay
