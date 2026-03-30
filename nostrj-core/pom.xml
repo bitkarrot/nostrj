@@ -20,10 +20,6 @@
             <artifactId>secp-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.bitcoinj.secp</groupId>
-            <artifactId>secp-ffm</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
@@ -40,6 +36,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bitcoinj.secp</groupId>
+            <artifactId>secp-ffm</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

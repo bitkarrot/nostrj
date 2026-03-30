@@ -21,19 +21,27 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
         
-        <secp256k1.version>0.2.1-SNAPSHOT</secp256k1.version>
+        <secp256k1.version>0.2</secp256k1.version>
         <bitcoinj.version>0.17.0</bitcoinj.version>
-        <micronaut.version>4.2.0</micronaut.version>
-        <jackson.version>2.15.3</jackson.version>
+        <micronaut.version>4.10.10</micronaut.version>
+        <jackson.version>2.19.4</jackson.version>
         <sqlite.version>3.44.1.0</sqlite.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.11</logback.version>
         <junit.version>5.10.0</junit.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <!-- bitcoinj/secp256k1-jdk Pre-release Maven repo -->
+            <id>secpjdk-repo</id>
+            <url>https://gitlab.com/api/v4/projects/55956336/packages/maven</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -114,15 +122,18 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.11.0</version>
                     <configuration>
-                        <source>21</source>
-                        <target>21</target>
-                        <release>21</release>
+                        <source>25</source>
+                        <target>25</target>
+                        <release>25</release>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.2</version>
+                    <configuration>
+                        <argLine>-Djava.library.path=${project.basedir}/src/main/native/libs</argLine>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
