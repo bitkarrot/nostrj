@@ -28,7 +28,7 @@
         <secp256k1.version>0.2</secp256k1.version>
         <bitcoinj.version>0.17.0</bitcoinj.version>
         <micronaut.version>4.10.10</micronaut.version>
-        <jackson.version>2.19.4</jackson.version>
+        <jackson.version>2.21.5</jackson.version>
         <sqlite.version>3.44.1.0</sqlite.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.12</logback.version>
